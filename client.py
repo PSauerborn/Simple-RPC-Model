@@ -18,3 +18,8 @@ class RPCProxy():
 
 c = Client(('localhost', 17000), authkey=b'peekaboo')
 proxy = RPCProxy(c)
+
+# functions registered on the Server can then be called
+
+a = proxy.add(2,4)
+b = proxy.sub(11,5)
