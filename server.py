@@ -90,6 +90,8 @@ class RPCServer(socket):
 
             t = Thread(target=self.handle_connection, args=(client_sock,))
             t.start()
+        
+        self.close()
 
 
     def __getattr__(self, name):
@@ -104,9 +106,16 @@ def add(x,y):
 
 
 if __name__ == "__main__":
+    
+    # server is instantiated
 
     serv = RPCServer()
+    
+    # functions are then registerd with the RPCHandler class. Note this is delegated
+    
     serv.register_function(HelloWorld)
     serv.register_function(add)
+    
+    # server is then set to listen
 
     serv.serve_forever()
